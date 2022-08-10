@@ -13,36 +13,39 @@ struct FieldOptions {
 }
 
 macro_rules! impl_getters_and_setters {
-    ($impl_block: ident, $field: ident, $type: ident) => {
+    ($impl_block: ident, $field: ident, $type: ident, $opts: ident) => {
         let get_name: TokenStream2 = format!("get_{}", $field).parse().unwrap();
         let set_name: TokenStream2 = format!("set_{}", $field).parse().unwrap();
         let set_err: TokenStream2 = format!("set_{}_err", $field).parse().unwrap();
         let setter_rename: TokenStream2 = format!("__{}", $field).parse().unwrap();
 
-        $impl_block.extend::<TokenStream2>(quote! {
-            #[getter]
-            pub fn #get_name(&self) -> PyResult<#$type> {
-                Ok(self.#$field.clone())
-            }
-        });
+        if !$opts.skip_get{
+            $impl_block.extend::<TokenStream2>(quote! {
+                #[getter]
+                pub fn #get_name(&self) -> PyResult<#$type> {
+                    Ok(self.#$field.clone())
+                }
+            });
+        }
 
-        // directly setting value raises error to prevent nested struct issues
-        $impl_block.extend::<TokenStream2>(quote! {
-            #[setter]
-            pub fn #set_name(&mut self, new_val: #$type) -> PyResult<()> {
-                Err(PyAttributeError::new_err("Directing setting is disabled to prevent nested struct errors."))
-            }
-        });
+        if !$opts.skip_set{
+            // directly setting value raises error to prevent nested struct issues
+            $impl_block.extend::<TokenStream2>(quote! {
+                #[setter]
+                pub fn #set_name(&mut self, new_val: #$type) -> PyResult<()> {
+                    Err(PyAttributeError::new_err("Direct setting is disabled to prevent nested struct errors."))
+                }
+            });
 
-        // setting is enabled indirectly becaues pyo3 does not support setting values in nested structs
-        $impl_block.extend::<TokenStream2>(quote! {
-            #[setter(#setter_rename)]
-            pub fn #set_err(&mut self, new_val: #$type) -> PyResult<()> {
-                self.#$field = new_val;
-                Ok(())
-            }
+            // setting is enabled indirectly becaues pyo3 does not support setting values in nested structs
+            $impl_block.extend::<TokenStream2>(quote! {
+                #[setter(#setter_rename)]
+                pub fn #set_err(&mut self, new_val: #$type) -> PyResult<()> {
+                    self.#$field = new_val;
+                    Ok(())
+                }
         });
-
+        }
     };
 }
 
@@ -111,7 +114,7 @@ pub fn pyo3_api(attr: TokenStream, item: TokenStream) -> TokenStream {
             // this drops attrs with api, removing the field attribute from the struct def
             field.attrs.retain(|_| *iter.next().unwrap());
 
-            impl_getters_and_setters!(impl_block, ident, ftype);
+            impl_getters_and_setters!(impl_block, ident, ftype, opts);
         }
     } else {
         panic!("Invalid use of macro.  Works on structs with named fields only.")
@@ -134,6 +137,7 @@ pub fn pyo3_api(attr: TokenStream, item: TokenStream) -> TokenStream {
 
     let impl_block = quote! {
         #[pymethods]
+        #[cfg(feature="pyo3")]
         impl #ident {
             #impl_block
         }
@@ -142,7 +146,7 @@ pub fn pyo3_api(attr: TokenStream, item: TokenStream) -> TokenStream {
     let mut final_output = TokenStream2::default();
     // add pyclass attribute
     final_output.extend::<TokenStream2>(quote! {
-        #[pyclass]
+        #[cfg_attr(feature="pyo3", pyclass)]
     });
     let mut output: TokenStream2 = ast.to_token_stream();
     output.extend(impl_block);

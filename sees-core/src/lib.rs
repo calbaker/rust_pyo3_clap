@@ -6,7 +6,7 @@ pub mod sees_pyo3;
 use sees_pyo3::*;
 
 /// Stuct for sovling the fibonacci sequence
-#[cfg_attr(feature = "pyo3", pyo3_api(
+#[pyo3_api(
     #[new]
     pub fn __new__(n: u64) -> Self {
         Self::new(n)
@@ -16,12 +16,12 @@ use sees_pyo3::*;
     pub fn solve_py(&mut self) {
         self.solve()
     }
-))]
+)]
 #[derive(Clone, Debug)]
 pub struct FibSolver {
     /// number of places to solve
     pub places: u64,
-    // #[cfg_attr(feature = "pyo3", api(skip_set))] // need to figure out how to get this to work
+    #[api(skip_set)]
     pub solution: Option<u64>,
 }
 
