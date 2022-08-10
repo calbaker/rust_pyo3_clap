@@ -25,3 +25,5 @@ t1 = time.time()
 
 print(f"Python solution: {py_fib}")
 print(f"Elapsed time to solve in python: {t1-t0:.3g} s")
+
+# rust should be about 100x faster than python for this!
