@@ -1,7 +1,14 @@
-// This code is modified from
-// https://github.com/drujensen/fib/blob/master/fib.rs
+//! This code is modified from
+//! https://github.com/drujensen/fib/blob/master/fib.rs
+
+pub mod sees_pyo3;
+// #[cfg(feature = "pyo3")]
+use sees_pyo3::*;
 
 /// Stuct for sovling the fibonacci sequence
+// #[cfg_attr(feature = "pyo3", pyo3_api)]
+#[pyo3_api]
+#[derive(Clone, Debug)]
 pub struct FibSolver {
     /// number of positions to solve
     pub n: u64,

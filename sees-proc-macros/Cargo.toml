@@ -1,13 +1,15 @@
 [package]
-name = "sees-core"
+name = "sees-proc-macros"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-pyo3 = "0.16.5"
-sees-proc-macros = { path = "../sees-proc-macros" }
+proc-macro-error = "1.0.4"
+proc-macro2 = "1.0.43"
+quote = "1.0.21"
+syn = "1.0.99"
 
-[features]
-pyo3 = []
+[lib]
+proc-macro = true
