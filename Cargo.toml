@@ -4,4 +4,5 @@ members = [
     "sees-core",
     "sees-py",
     "sees-proc-macros",
+    "sees-cli",
 ]

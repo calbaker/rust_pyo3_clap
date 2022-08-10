@@ -10,7 +10,7 @@ use sees_pyo3::*;
     #[new]
     pub fn __new__(n: u64) -> Self {
         Self::new(n)
-    } 
+    }
 
     #[pyo3(name = "solve")]
     pub fn solve_py(&mut self) {
@@ -19,32 +19,40 @@ use sees_pyo3::*;
 ))]
 #[derive(Clone, Debug)]
 pub struct FibSolver {
-    /// number of positions to solve
-    pub n: u64,
-    pub sol: Option<u64>,
+    /// number of places to solve
+    pub places: u64,
+    // #[cfg_attr(feature = "pyo3", api(skip_set))] // need to figure out how to get this to work
+    pub solution: Option<u64>,
 }
 
 impl Default for FibSolver {
     fn default() -> Self {
-        Self { n: 42, sol: None }
+        Self {
+            places: 42,
+            solution: None,
+        }
     }
 }
 
 impl FibSolver {
     pub fn solve(&mut self) {
-        self.sol = Some(fib(self.n));
+        self.solution = Some(fib(self.places));
     }
 
-    pub fn new(n: u64) -> Self {
-        Self { n, sol: None }
+    pub fn new(places: u64) -> Self {
+        Self {
+            places,
+            solution: None,
+        }
     }
 }
 
 fn fib(n: u64) -> u64 {
     if n <= 1 {
-        return n;
+        n
+    } else {
+        fib(n - 1) + fib(n - 2)
     }
-    fib(n - 1) + fib(n - 2)
 }
 
 #[cfg(test)]
@@ -56,7 +64,7 @@ mod tests {
         // must be mutable
         let mut fib = FibSolver::new(0);
         fib.solve();
-        assert_eq!(fib.sol, Some(0))
+        assert_eq!(fib.solution, Some(0))
     }
 
     #[test]
@@ -64,7 +72,7 @@ mod tests {
         // must be mutable
         let mut fib = FibSolver::new(1);
         fib.solve();
-        assert_eq!(fib.sol, Some(1))
+        assert_eq!(fib.solution, Some(1))
     }
 
     #[test]
@@ -72,6 +80,6 @@ mod tests {
         // must be mutable
         let mut fib = FibSolver::new(42);
         fib.solve();
-        assert_eq!(fib.sol, Some(267914296))
+        assert_eq!(fib.solution, Some(267914296))
     }
 }

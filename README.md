@@ -1,0 +1,1 @@
+At the top level, you can run `cargo test --release`, and this will test the code and generate the CLI app in targe/release.  Assuming you have an appropriate python environment created, you can run `maturin develop --release` within sees-py to build the python package.  You can then run demo.py.  
