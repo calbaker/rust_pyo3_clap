@@ -2,12 +2,21 @@
 //! https://github.com/drujensen/fib/blob/master/fib.rs
 
 pub mod sees_pyo3;
-// #[cfg(feature = "pyo3")]
+#[cfg(feature = "pyo3")]
 use sees_pyo3::*;
 
 /// Stuct for sovling the fibonacci sequence
-// #[cfg_attr(feature = "pyo3", pyo3_api)]
-#[pyo3_api]
+#[cfg_attr(feature = "pyo3", pyo3_api(
+    #[new]
+    pub fn __new__(n: u64) -> Self {
+        Self::new(n)
+    } 
+
+    #[pyo3(name = "solve")]
+    pub fn solve_py(&mut self) {
+        self.solve()
+    }
+))]
 #[derive(Clone, Debug)]
 pub struct FibSolver {
     /// number of positions to solve

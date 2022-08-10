@@ -140,6 +140,7 @@ pub fn pyo3_api(attr: TokenStream, item: TokenStream) -> TokenStream {
     };
 
     let mut final_output = TokenStream2::default();
+    // add pyclass attribute
     final_output.extend::<TokenStream2>(quote! {
         #[pyclass]
     });
