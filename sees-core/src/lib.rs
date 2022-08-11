@@ -1,9 +1,12 @@
 //! This code is modified from
 //! https://github.com/drujensen/fib/blob/master/fib.rs
 
-pub mod sees_pyo3;
+#[cfg(feature = "pyo3")]
+mod sees_pyo3;
 #[cfg(feature = "pyo3")]
 use sees_pyo3::*;
+
+use sees_proc_macros::pyo3_api;
 
 /// Stuct for sovling the fibonacci sequence
 #[pyo3_api(
