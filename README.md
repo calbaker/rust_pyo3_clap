@@ -17,6 +17,7 @@ This crate, which I’ll use for the complex example in SEES (after providing a 
     1. Activate:
         - linux/unix: `source /.venv/bin/activate`
         - windows: `.\.venv\Scripts\activate.ps1` or `.\.venv\Scripts\activate.bat`, depending on your terminal environment
+1. run `pip install maturin`.
 1. run `maturin develop --release` within sees-py to build the python package.  
 
 ## Stuff you can run
