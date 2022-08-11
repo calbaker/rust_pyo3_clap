@@ -7,4 +7,4 @@ This crate, which I’ll use for the complex example in SEES (after providing a 
 - How to use a cargo workspace to organize a collection of co-dependent crates
 - How to use pyi … but I’m pretty sure I screwed this up and would appreciate another set of eyes on it
 
-At the top level, you can run `cargo test --release`, and this will test the code and generate the CLI app in targe/release.  Assuming you have an appropriate python environment created, you can run `maturin develop --release` within sees-py to build the python package.  You can then run demo.py.  
+At the top level, you can run `cargo test --release`, and this will test the code and generate the CLI app in targe/release.  Assuming you have an appropriate python environment created, you can run `maturin develop --release` within sees-py to build the python package.  You can then run [demo.py](demo.py).  
