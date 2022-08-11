@@ -13,10 +13,10 @@ This crate, which I’ll use for the complex example in SEES (after providing a 
 1. [Install rust](https://www.rust-lang.org/tools/install)
 1. At the top level, run `cargo test --release`, and this will test the code and generate the CLI app in targe/release.  
 1. Create and activate a suitable python environment, e.g.
-  1. `python3.10 -m venv .venv`
-  1. Activate:
-    - linux/unix: `source /.venv/bin/activate`
-    - windows: `.\.venv\Scripts\activate.ps1` or `.\.venv\Scripts\activate.bat`, depending on your terminal environment
+    1. `python3.10 -m venv .venv`
+    1. Activate:
+        - linux/unix: `source /.venv/bin/activate`
+        - windows: `.\.venv\Scripts\activate.ps1` or `.\.venv\Scripts\activate.bat`, depending on your terminal environment
 1. run `maturin develop --release` within sees-py to build the python package.  
 
 ## Stuff you can run
