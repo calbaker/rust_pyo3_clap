@@ -6,3 +6,6 @@ members = [
     "sees-proc-macros",
     "sees-cli",
 ]
+
+[workspace.dependencies]
+pyo3 = { version = "0.16.5" }

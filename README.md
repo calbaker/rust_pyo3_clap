@@ -6,7 +6,6 @@ This crate, which I’ll use for the complex example in SEES (after providing a 
 - How to use procedural macros to eliminate boiler plate
 - That rust is ~100x faster than python in solving the Fibonacci sequence to 42 places
 - How to use a cargo workspace to organize a collection of co-dependent crates
-- How to use pyi … but I’m pretty sure I screwed this up and would appreciate another set of eyes on it
 
 # How to make it run
 ## Compiling and such
