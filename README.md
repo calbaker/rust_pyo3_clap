@@ -20,5 +20,8 @@ This crate, which I’ll use for the complex example in SEES (after providing a 
 1. run `maturin develop --release` within fib-py to build the python package.  
 
 ## Stuff you can run
-- [demo.py](demo.py) -- show that rust+python is 100x faster than pure python
-- `target/release/fib-cli 42` -- demonstrate how to run directly as a CLI app
+- `python demo.py` -- show that rust+python is 100x faster than pure python
+- `./target/release/fib-cli 42` -- demonstrate how to run directly as a CLI app
+
+# Presentation
+[sees-rust-as-python-backend.md](sees-rust-as-python-backend.md)
