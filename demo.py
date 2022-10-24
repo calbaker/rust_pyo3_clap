@@ -2,9 +2,9 @@
 
 import time
 
-import sees_py
+import fib_py
 
-rust_fib = sees_py.FibSolver(42)
+rust_fib = fib_py.FibSolver(42)
 t0 = time.time()
 rust_fib.solve()
 t1 = time.time()

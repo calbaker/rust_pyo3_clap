@@ -1,5 +1,5 @@
 [package]
-name = "sees-core"
+name = "fib-core"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 pyo3 = { workspace = true, optional = true }
-sees-proc-macros = { path = "../sees-proc-macros" }
+proc-macros = { path = "proc-macros" }
 
 [features]
 pyo3 = ["dep:pyo3"]

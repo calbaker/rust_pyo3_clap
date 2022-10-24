@@ -1,9 +1,9 @@
 use pyo3::prelude::*;
 
-use sees_core::FibSolver;
+use fib_core::FibSolver;
 
 #[pymodule]
-fn sees_py(_py: Python, m: &PyModule) -> PyResult<()> {
+fn fib_py(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<FibSolver>()?;
     Ok(())
 }

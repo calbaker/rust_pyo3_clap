@@ -2,11 +2,11 @@
 //! https://github.com/drujensen/fib/blob/master/fib.rs
 
 #[cfg(feature = "pyo3")]
-mod sees_pyo3;
+mod pyo3_imports;
 #[cfg(feature = "pyo3")]
-use sees_pyo3::*;
+use pyo3_imports::*;
 
-use sees_proc_macros::pyo3_api;
+use proc_macros::pyo3_api;
 
 /// Stuct for sovling the fibonacci sequence
 #[pyo3_api(

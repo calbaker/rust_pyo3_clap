@@ -1,16 +1,16 @@
 [package]
-name = "sees-py"
+name = "fib-py"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
-name = "sees_py"
+name = "fib_py"
 crate-type = ["cdylib"]
 
 [dependencies]
 pyo3 = { workspace = true, features = ["extension-module"] }
-sees-core = { path = "../sees-core", features = ["pyo3"] }
+fib-core = { path = "../fib-core", features = ["pyo3"] }
 
 [package.metadata.maturin]
 python-source = "python"

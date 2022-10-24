@@ -17,8 +17,8 @@ This crate, which I’ll use for the complex example in SEES (after providing a 
         - linux/unix: `source /.venv/bin/activate`
         - windows: `.\.venv\Scripts\activate.ps1` or `.\.venv\Scripts\activate.bat`, depending on your terminal environment
 1. run `pip install maturin`.
-1. run `maturin develop --release` within sees-py to build the python package.  
+1. run `maturin develop --release` within fib-py to build the python package.  
 
 ## Stuff you can run
 - [demo.py](demo.py) -- show that rust+python is 100x faster than pure python
-- `target/release/sees-cli 42` -- demonstrate how to run directly as a CLI app
+- `target/release/fib-cli 42` -- demonstrate how to run directly as a CLI app

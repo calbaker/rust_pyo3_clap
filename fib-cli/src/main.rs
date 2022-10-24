@@ -1,6 +1,6 @@
 use clap::Parser;
 
-use sees_core::FibSolver;
+use fib_core::FibSolver;
 
 /// Wrapper for FibSolver.
 #[derive(Parser)]

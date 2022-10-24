@@ -1,10 +1,9 @@
 [workspace]
 
 members = [
-    "sees-core",
-    "sees-py",
-    "sees-proc-macros",
-    "sees-cli",
+    "fib-core",
+    "fib-py",
+    "fib-cli",
 ]
 
 [workspace.dependencies]

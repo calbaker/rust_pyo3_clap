@@ -5,7 +5,7 @@ are available to it from Rust.
 
 from typing import Optional
 
-from .sees_py import *
+from .fib_py import *
 
 
 class FibSolver:
